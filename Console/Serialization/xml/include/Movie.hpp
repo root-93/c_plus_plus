@@ -1,9 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <iostream>
 #include <iomanip>
-#include <initializer_list>
 
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/vector.hpp>
