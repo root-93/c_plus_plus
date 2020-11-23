@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <vector>
 #include "Movie.hpp"
 #include "XmlSerialize.hpp"
 
@@ -7,11 +7,11 @@ using namespace std;
 
 int main() {
     cout << "Serailize example" << endl;
-    cout << "Create some mvies" << endl;
+    cout << "Creating some mvies..." << endl;
 
     Movie forest {
         1221, 
-        "Forest Gump", 
+        std::string("Forest Gump"), 
         1994,
         202,
         {   "Robert Zemeckis" },
@@ -27,7 +27,7 @@ int main() {
 
     Movie shawshank {
         964, 
-        "The Shawshank Redemption", 
+        std::string("The Shawshank Redemption"), 
         1994,
         142,
         {   "Frank Darabont" },
@@ -42,7 +42,7 @@ int main() {
 
     Movie holmes {
         1003, 
-        "Sherlock Holmes", 
+        std::string("Sherlock Holmes"), 
         2009,
         128,
         {   "Guy Ritchie" },
@@ -56,15 +56,33 @@ int main() {
         }
     };
     
-    cout << "before serialization\n" << forest.toString(); 
-    saveToXml(forest, "movies");
-    //saveToXml(shawshank, "movies");
-    //saveToXml(holmes, "movies");
+    vector<Movie> Movies {
+        forest,
+        shawshank,
+        holmes
+    };
 
-    Movie restoredForest;
+    cout << "before serialization\n" 
+        << forest.toString()
+        << shawshank.toString()
+        << holmes.toString();
+    // xml::save(forest, "movies.xml");
+    // xml::save(shawshank, "movies");
+    // xml::save(holmes, "movies");
+    xml::save(Movies, "movies.xml");
+
+
+    vector<Movie> restoredMovies;
+    xml::restore(restoredMovies, "movies.xml");
+    cout << "\n\nAfter serialization\n";
+    for (auto &&s : restoredMovies){
+        cout << s.toString();
+    }
+    
+    //Movie restoredForest;
     //Movie restoredShawshank;
     //Movie restoredHolmes;
 
-    restoreFromXml(restoredForest, "movies");
-    cout << "after serialization\n" << restoredForest.toString(); 
-}
+    // xml::restore(restoredForest, "movies.xml");
+    // cout << "after serialization\n" << restoredForest.toString(); 
+}   

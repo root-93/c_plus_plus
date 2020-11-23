@@ -1,41 +1,53 @@
 #pragma once
 
 #include <fstream> //std::ofstream
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-#include <cstdio>
-#include <boost/config.hpp>
-#if defined(BOOST_NO_STDC_NAMESPACE)
-    namespace std{
-        using::remove;
-    }
-#endif
+#include <ostream>
+#include <sstream>
 
 #include <boost/archive/tmpdir.hpp>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/string.hpp>
 
 
-// namespace xml{
-//     void saveXml(const Movie &movie, const char *fileName) noexcept;
-//     void restoreXml(Movie &movie, const char *fileName);
-// };
+
+namespace xml{
+    template <class T>
+    static void save(const T &t, const char *fileName) noexcept;
+
+    template <class T>
+    static void restore(T &t, const char *fileName) noexcept;
+}
+
 
 template <class T>
-void saveToXml(const T &t, const char *fileName) noexcept{
+static void xml::save(T &t, const char *fileName) noexcept{
     std::ofstream ofs{fileName};
     assert(ofs.good());
     boost::archive::xml_oarchive oa{ofs};
     oa << BOOST_SERIALIZATION_NVP(t);
+    // try{
+    //     oa << BOOST_SERIALIZATION_NVP(t);
+    // }
+    // catch(std::exception const &ex){
+    //     std::cerr << ex.what() << std::endl;
+    // }
 }
 
 
 template <class T>
-void restoreFromXml(T &t, const char *fileName) noexcept{
+static void xml::restore(T &t, const char *fileName) noexcept{
     std::ifstream ifs(fileName);
     assert(ifs.good());
     boost::archive::xml_iarchive ia{ifs};
     ia >> BOOST_SERIALIZATION_NVP(t);
-}
+    // try{
+    //     ia >> BOOST_SERIALIZATION_NVP(t);
+    // }
+    // catch(std::exception const &ex){
+    //     std::cerr << ex.what() << std::endl;
+    // }
+}    
