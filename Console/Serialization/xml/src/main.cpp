@@ -1,9 +1,18 @@
 #include <iostream>
 #include <vector>
+
 #include "Movie.hpp"
 #include "XmlSerialize.hpp"
+#include "pugixml.hpp"
+#include "PugiSerialize.hpp"
 
 using namespace std;
+
+constexpr int movieCount = 3;
+
+void xmlWithBoost(MovieList &movies);
+void xmlWithPugixml(MovieList &movies);
+
 
 int main() {
     cout << "Serailize example" << endl;
@@ -56,7 +65,7 @@ int main() {
         }
     };
     
-    vector<Movie> Movies {
+    vector<Movie> movies {
         forest,
         shawshank,
         holmes
@@ -66,23 +75,35 @@ int main() {
         << forest.toString()
         << shawshank.toString()
         << holmes.toString();
-    // xml::save(forest, "movies.xml");
-    // xml::save(shawshank, "movies");
-    // xml::save(holmes, "movies");
-    xml::save(Movies, "movies.xml");
 
+    //serialization with boost.serialize
+    xmlWithBoost(movies);
 
-    vector<Movie> restoredMovies;
+    //serialization with pugixml
+    xmlWithPugixml(movies);
+}   
+
+void xmlWithBoost(MovieList &movies){
+    xml::save(movies, "movies.xml");
+
+    MovieList restoredMovies;
     xml::restore(restoredMovies, "movies.xml");
+    
     cout << "\n\nAfter serialization\n";
     for (auto &&s : restoredMovies){
         cout << s.toString();
     }
-    
-    //Movie restoredForest;
-    //Movie restoredShawshank;
-    //Movie restoredHolmes;
+}
 
-    // xml::restore(restoredForest, "movies.xml");
-    // cout << "after serialization\n" << restoredForest.toString(); 
-}   
+void xmlWithPugixml(MovieList &movies){
+    constexpr auto filePath = "PugiMovies.xml";
+    PugiSerialize::serialize(movies, filePath);
+    auto result = PugiSerialize::deserialize(filePath);
+
+    assert(result.size() == movieCount);
+
+    cout << "\n\nAfter pugi serialization\n";
+    for (auto &&s : result){
+        cout << s.toString();
+    }
+}

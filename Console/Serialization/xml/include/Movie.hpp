@@ -7,11 +7,13 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/string.hpp>
 
+#include "Role.hpp"
+
+#define actors std::vector<Role>
 
 struct Movie{
     private:
-        class Pair;
-        using actors = std::vector<Pair>;
+        //using actors = std::vector<Pair>;
         using people = std::vector<std::string>;
     public:
         friend class boost::serialization::access;
@@ -51,35 +53,9 @@ struct Movie{
             
         }
 
-    class Pair{
-        public:
-            friend class boost::serialization::access;
+    public:
 
-            Pair() = default;
-            Pair(std::pair<std::string, std::string> pair) : _pair{pair} {}
-            Pair(std::string first, std::string second) : _pair{first, second} {}
-            ~Pair(){}
-
-            std::string first()const {
-                return _pair.first;
-            }
-
-            std::string second()const {
-                return _pair.second;
-            }
-
-            template<class Archive>
-            void serialize(Archive &ar,[[maybe_unused]]const unsigned int version) {            
-                ar & BOOST_SERIALIZATION_NVP(_pair.first);
-                ar & BOOST_SERIALIZATION_NVP(_pair.second);
-            }
-
-
-        private:
-            std::pair<std::string, std::string> _pair {};        
-    };
 };
-
 
 inline std::string Movie::toString()const noexcept{
         constexpr int width = 15;
@@ -104,11 +80,13 @@ inline std::string Movie::toString()const noexcept{
         }
 
         ss << "Cast:\n";
-        for (auto &&s : cast){
-            ss << "\t" << std::setw(35 )<< "star: " + s.first() << "name: " + s.second() + "\n";
+        for (auto &s : cast){
+            ss << "\t" << std::setw(35) << "star: " + s.name() << "name: " + s.role() + "\n";
         }
         return ss.str();
  }
+
+
 
 /* use when serialize finction can not be member of Movie
 namespace boost {

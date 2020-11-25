@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<movies>
+	<movie ID="1221" title="Forest Gump" year="1994" lenght="202">
+		<cast>
+			<role star="Tom Hamks" name="Forrest Gump" />
+			<role star="Sally Field" name="Mrs Gump" />
+			<role star="Robin Wright" name="Jenny Curran" />
+			<role star="Mykelti Williamson" name="Bubba Blue" />
+		</cast>
+		<directors>
+			<director name="Robert Zemeckis" />
+		</directors>
+		<writers>
+			<writer>
+				<name />
+			</writer>
+			<writer>
+				<name />
+			</writer>
+		</writers>
+	</movie>
+	<movie ID="964" title="The Shawshank Redemption" year="1994" lenght="142">
+		<cast>
+			<role star="Tim Robbins" name="Andy Dufresne" />
+			<role star="Morgan Freeman" name="Ellis 'Red' Redding" />
+			<role star="Bob Gunton" name="Warden Norton" />
+		</cast>
+		<directors>
+			<director name="Frank Darabont" />
+		</directors>
+		<writers>
+			<writer>
+				<name />
+			</writer>
+			<writer>
+				<name />
+			</writer>
+		</writers>
+	</movie>
+	<movie ID="1003" title="Sherlock Holmes" year="2009" lenght="128">
+		<cast>
+			<role star="Robert Downey Jr." name="Sherlock Holmes" />
+			<role star="Jude Law" name="Dr. John Watson" />
+			<role star="Rachel McAdams" name="Irene Adler" />
+			<role star="Mark Strong" name="Lord Henry Blackwood" />
+		</cast>
+		<directors>
+			<director name="Guy Ritchie" />
+		</directors>
+		<writers>
+			<writer>
+				<name />
+			</writer>
+			<writer>
+				<name />
+			</writer>
+		</writers>
+	</movie>
+</movies>
