@@ -7,11 +7,13 @@
 
 using MovieList = std::vector<Movie>;
 
+
 class PugiSerialize {
     public:
         static void        serialize(MovieList const &movies, std::string filepath);
         static MovieList   deserialize(std::string filepath);
 };
+
 
 inline void PugiSerialize::serialize(MovieList const &movies, std::string filepath){
     pugi::xml_document doc;
