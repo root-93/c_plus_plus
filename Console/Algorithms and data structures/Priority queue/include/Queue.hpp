@@ -25,24 +25,25 @@ class PriorityQueue{
                             std::pop_heap(std::begin(_data), std::end(_data), _comparer);
                             _data.pop_back();
                         };  
-        constReference  top() const {return _data.front();}
+        constReference  top()const {return _data.front();}
 
-//????????????????????????????????
         void            swap(PriorityQueue &other) noexcept{
-                            swap(_data, other);
-                            swap(_comparer, other._comparer)  
+                            swap(_data, other._data);
+                            swap(_comparer, other._comparer);
                         }
-        size_t      size()const noexcept {return _data.size();}
-        bool        isEmpty()const noexcept {return _data.empty();}
-        std::vector<T>& data() {return &_data;}
+        size_t          size()const noexcept {return _data.size();}
+        bool            isEmpty()const noexcept {return _data.empty();}
 
     private:
-        std::vector<T> _data;
-        Compare _comparer;
-        //friend void swap(PriorityQueue<T, Compare> &lhs, PriorityQueue<T, Compare> &rhs);
+        std::vector<T>  _data;
+        Compare         _comparer;
 };
 
+
+
 template <class T, class Compare>
-void swap(PriorityQueue<T, Compare> &lhs, PriorityQueue<T, Compare> &rhs) noexcept(noexcept(lhs.swap(rhs))){
+void swap(PriorityQueue<T, Compare> &lhs, 
+          PriorityQueue<T, Compare> &rhs) 
+          noexcept(noexcept(lhs.swap(rhs))){
     lhs.swap(rhs);
 }

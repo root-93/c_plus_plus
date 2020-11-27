@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <aliases.h>
 #include "Queue.hpp"
 
 using namespace std;
@@ -7,7 +7,8 @@ using namespace std;
 
 int main() {
     cout << "Priority queue - simple usage" << endl;
-    PriorityQueue<int> queue {1,2,3,4,5,6,7,8,9,10};
+    PriorityQueue<int> queue {5,3,6,4,7,2,8,1,10,0};
+    
 
     cout << "queue size: "<<queue.size() << "\n\n";
 
