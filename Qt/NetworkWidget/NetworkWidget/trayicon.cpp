@@ -20,10 +20,11 @@ TrayIcon::TrayIcon()
     QTimer::singleShot(0, this, SLOT(requestXml()));
 }
 
-TrayIcon::~TrayIcon()
-{
+
+TrayIcon::~TrayIcon(){
     delete ui;
 }
+
 
 void TrayIcon::createContextMenu(){
     QStringList airports;
@@ -71,10 +72,13 @@ void TrayIcon::readXml(QNetworkReply *reply){
         if(retryDelaySec > 60*60)
             retryDelaySec = 1;
     }
+    qDebug() << "size: " << reply->size();
+    qDebug() << "data: " << reply->readAll();
     retryDelaySec = 1;
     QDomDocument document;
-    if(document.setContent(reply))
+    if(document.setContent(reply)){
             populateToolTip(&document);
+    }
     qDebug() << document.toString();
     QTimer::singleShot(60 * 60 * 1000, this, SLOT(requestXml()));
 }

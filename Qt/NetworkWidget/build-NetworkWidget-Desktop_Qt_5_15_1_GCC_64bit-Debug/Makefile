@@ -903,6 +903,10 @@ moc_trayicon.cpp: ../NetworkWidget/trayicon.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtGui/QIcon \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QCache \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qcache.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/QDomDocument \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qdom.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qtxmlglobal.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qtxml-config.h \
 		moc_predefs.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/bin/moc
 	/home/root93/AppFiles/Qt/5.15.1/gcc_64/bin/moc $(DEFINES) --include /home/root93/Repo/C++/Qt/NetworkWidget/build-NetworkWidget-Desktop_Qt_5_15_1_GCC_64bit-Debug/moc_predefs.h -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/mkspecs/linux-g++ -I/home/root93/Repo/C++/Qt/NetworkWidget/NetworkWidget -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/include -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtWidgets -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtGui -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtNetwork -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml -I/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../NetworkWidget/trayicon.h -o moc_trayicon.cpp
@@ -1073,6 +1077,10 @@ main.o: ../NetworkWidget/main.cpp ../NetworkWidget/trayicon.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtGui/QIcon \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QCache \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qcache.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/QDomDocument \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qdom.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qtxmlglobal.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qtxml-config.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtWidgets/QApplication \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtWidgets/qapplication.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qcoreapplication.h \
@@ -1227,13 +1235,19 @@ trayicon.o: ../NetworkWidget/trayicon.cpp ../NetworkWidget/trayicon.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtGui/QIcon \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QCache \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qcache.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/QDomDocument \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qdom.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qtxmlglobal.h \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtXml/qtxml-config.h \
 		ui_trayicon.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QTimer \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qtimer.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qbasictimer.h \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QSettings \
 		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/qsettings.h \
-		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QStringList
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtCore/QStringList \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtGui/QTextDocumentFragment \
+		/home/root93/AppFiles/Qt/5.15.1/gcc_64/include/QtGui/qtextdocumentfragment.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o trayicon.o ../NetworkWidget/trayicon.cpp
 
 moc_trayicon.o: moc_trayicon.cpp 
