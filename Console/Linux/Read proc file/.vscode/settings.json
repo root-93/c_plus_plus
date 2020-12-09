@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "thread": "cpp",
+        "limits": "cpp",
+        "ratio": "cpp",
+        "iostream": "cpp"
+    }
+}
