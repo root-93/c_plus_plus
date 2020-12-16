@@ -4,7 +4,8 @@
 
 using namespace std;
 
-constexpr void printPascalTriangel(const int n);
+
+void printPascalTriangel(const int n);
 constexpr uint number(const uint i);
 
 int main(){
@@ -21,7 +22,7 @@ int main(){
 
 
 
-constexpr void printPascalTriangel(const int n){
+void printPascalTriangel(const int n){
     for(int i = 0 ; n > i ; i++){
         auto x = 1;
         cout << string((n - i - 1) * (n / 2), ' ');

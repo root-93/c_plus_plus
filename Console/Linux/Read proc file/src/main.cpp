@@ -8,7 +8,8 @@
 #include <unistd.h>
 #include <fstream>
 #include <sys/stat.h>
-#include <fcntl.h>
+#include <fcntl.h>nclude <stdio.h>
+#include <iostream>
 
 namespace fs = boost::filesystem;
 
@@ -58,36 +59,53 @@ int main() {
 
 //================================================================
 
-
 int readProcesStat(pid_t pid, [[maybe_unused]]ProcesInfo *info){
-    char pfile[256];
-    constexpr uint bufferSize {4096};
-    unsigned char buffer[bufferSize];
-    //int stat {-1};
+    char filePath[256];
+    constexpr size_t bufferSize {sizeof(ulong)};
+    u_char buffer[bufferSize];
     
-    sprintf(pfile, "/proc/%d/status", pid);
-    int fd = open(pfile, 00);
-    [[maybe_unused]]int bytesRead = read(fd, buffer, bufferSize);
+    sprintf(filePath, "/proc/%d/status", pid);
+    int fd = open(filePath, O_RDONLY);
+    int bytesRead = readFile(fd, buffer, bufferSize);
 
-    string result;
-    stringstream ss;
-    ss << buffer;
-    ss >> result;
+    string result {charTableToString(buffer, bytesRead)};
+    //showProcStatus(buffer, bytesRead);
+    
 
     cout << result;
-    //showProcStatus(buffer, bytesRead);
     return 1;
 }
 
+int readFile(int fd, u_char *buff, size_t len){
+    ssize_t ret;
+    auto begin  = buff;
 
-void charTableToString(unsigned char *source, int lenght, string &dest){
-    
+    while (len != 0 && (ret = read(fd, buff, len)) != 0){
+        if(ret == -1){
+            if(errno == EINTR)
+                continue;
+            perror(__func__);
+            break;
+        }
+
+        len -= ret;
+        buff += ret;
+    }
+
+    return buff - begin;
+}
+
+
+string charTableToString(u_char *source, int lenght){
+    stringstream ss;
+    ss << source;
+    return ss.str();
 }
 
 
 void showProcStatus(unsigned char *data, int lenght){
     unsigned char *end {data + lenght};
-    for(unsigned char *d = data; data < end; ){
+    for(auto d = data; data < end; ){
         cout << d <<endl;
         while(*d++);
     }
@@ -150,7 +168,6 @@ void getProcPids(){
             pids.push_back(iter->path());
         }
     }
-    
 }
 
 
